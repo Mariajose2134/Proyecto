@@ -1,0 +1,138 @@
+body{
+      background-color: rgb(209, 209, 216);
+    }
+    .form-group label {
+      display: block;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 50px;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+      background-color: darkslategrey;
+      color: white;
+      width: 100%;
+    }
+
+    .submit-button:hover {
+      background-color: slategrey;
+      /* Un azul más oscuro al pasar el mouse */
+    }
+    .title {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: white;
+    }
+
+    .menu, footer {
+      background-color: #023859;
+      overflow: hidden;
+      margin: 20px 0 50px 0;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      text-align: center;
+      
+    }
+    #elemento1{
+      background-color: #04ADBF;
+      border-radius: 4px;
+    }
+
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+       }
+
+         .menu li {
+      margin: 10px 5px;
+    
+       }
+
+       .menu a {
+        text-transform: uppercase;
+        font-weight: bold;
+      color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+
+
+       }
+
+          .menu a:hover {
+      background-color: #04ADBF;
+            border-radius: 4px;
+       }
+
+       #form-section {
+      background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
+      padding: 20px;
+      width: auto;
+      max-width: 400px;
+      margin: 0 auto; 
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /* #region */
+    #video-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    #video-section iframe {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+ 
+      font-size: 14px;
+      text-align: center;
+      margin-top: 5px !important;
+
+    }
+
+    footer p {
+      font-family: Arial, sans-serif;
+      
+    } 
+
+    footer > p {
+      font-weight: bold;
+    } 
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+    footer h1, footer h2 {
+      margin: 10px !important;
+    }
+
+    h2+div {
+
+      background-color:darkolivegreen;
+      padding: 5px;
+      margin-top: 10px;
+    }
+
+    .imagen-centrada {
+      display: block;       /* convierte la imagen en bloque */
+      margin: 20px auto;    /* centra horizontalmente */
+
+}
