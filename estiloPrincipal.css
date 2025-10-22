@@ -1,32 +1,6 @@
 body{
       background-color: rgb(209, 209, 216);
     }
-    .form-group label {
-      display: block;
-      margin-left: 5px;
-      font-weight: bold;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .submit-button {
-      padding: 10px 50px;
-      border-radius: 15px;
-      transition: background-color 0.3s ease;
-      background-color: darkslategrey;
-      color: white;
-      width: 100%;
-    }
-
-    .submit-button:hover {
-      background-color: slategrey;
-      /* Un azul más oscuro al pasar el mouse */
-    }
     .title {
       text-align: center;
       font-family: Arial, sans-serif;
@@ -78,27 +52,8 @@ body{
             border-radius: 4px;
        }
 
-       #form-section {
-      background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
-      padding: 20px;
-      width: auto;
-      max-width: 400px;
-      margin: 0 auto; 
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    /* #region */
-    #video-section {
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    #video-section iframe {
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
+   
+  
     footer {
  
       font-size: 14px;
@@ -122,13 +77,6 @@ body{
     }
     footer h1, footer h2 {
       margin: 10px !important;
-    }
-
-    h2+div {
-
-      background-color:darkolivegreen;
-      padding: 5px;
-      margin-top: 10px;
     }
 
     .imagen-centrada {
