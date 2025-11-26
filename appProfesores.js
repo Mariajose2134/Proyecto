@@ -52,7 +52,7 @@ async function cargarProfesores() {
   profesores.forEach((profesor) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${profesor.codigo} - ${profesor.nombre} ${profesor.correo} ${profesor.celular}  <button class="btn-eliminar" data-id="${profesor.codigo}">Eliminar</button>`;
+    li.innerHTML = `${profesor.codigo} - ${profesor.nombre} ${profesor.correo} ${profesor.celular}  <button class="btn-delete" data-id="${profesor.codigo}">Eliminar</button>`;
     listaProfesores.appendChild(li);
   });
 }

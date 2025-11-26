@@ -5,9 +5,9 @@ import { supabase } from "./supebaseClient.js";
 //========================
 const form = document.getElementById("estudiante-form");
 const inputId = document.getElementById("idEstudiante");
-const inputCodigo = document.getElementById("nombre");
-const inputNombre = document.getElementById("email");
-const inputCreditos = document.getElementById("idCarrera");
+const inputNombre= document.getElementById("nombre");
+const inputEmail = document.getElementById("email");
+const inputIdCarrera = document.getElementById("idCarrera");
 const btnSave = document.getElementById("btn-save");
 const btnCancel = document.getElementById("btn-cancel");
 const statusDiv = document.getElementById("status");
@@ -42,7 +42,7 @@ listaEstudiantes.addEventListener("click", async (e) => {
 //===================================
 async function cargarEstudiantes() {
   let { data: estudiantes, error } = await supabase
-    .from("Estudiante")
+    .from("Estudiantes")
     .select("*");
 
   if (error) {
