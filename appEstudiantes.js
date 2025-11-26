@@ -57,7 +57,7 @@ async function cargarEstudiantes() {
 }
 async function crearEstudiante(nombre, email, idCarrera) {
   const estudiante = { nombre, email, idCarrera };
-  let { error } = await supabase.from("Estudiante").insert([estudiante]);
+  let { error } = await supabase.from("Estudiantes").insert([estudiante]);
   if (error) {
     console.error(error);
   }
@@ -65,7 +65,7 @@ async function crearEstudiante(nombre, email, idCarrera) {
 }
 
 async function eliminarEstudiante(idEstudiante) {
-  let { error } = await supabase.from("Estudiante").delete().eq("idEstudiante", idEstudiante);
+  let { error } = await supabase.from("Estudiantes").delete().eq("idEstudiante", idEstudiante);
   if (error) {
     console.error(error);
   }
