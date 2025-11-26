@@ -26,40 +26,30 @@ form.addEventListener("submit", async (e) => {
   
   if (editando) {
   } else {
-    await crearProfesor(codigo,nombre, correo, celular);
+   await crearProfesor(codigo, nombre, correo, celular);
   }
 
   form.reset();
 });
 
-listaEstudiantes.addEventListener("click", async (e) => {
-  if (e.target.classList.contains("btn-delete")) {
-    const id = e.target.getAttribute("data-id");
-    await eliminarProfesores(id);
-    cargarProfesores();
-  }
-});
-
-//===================================
-//CRUD (CREATE-READ-UPDATE-DELETE)
-//===================================
 async function cargarProfesores() {
-  let { data: Profesores, error } = await supabase.from("Profesor").select("*");
+  let { data: profesores, error } = await supabase.from("Profesores").select("*");
 
   if (error) {
-    console.error("Error al cargar profesor:", error);
+    console.error("Error al cargar profespres:", error);
     return;
   }
-  listaCursos.innerHTML = "";
-  Profesores.forEach((Profesor) => {
+  listaProfesores.innerHTML = "";
+  profesores.forEach((profesores) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${estudiante.nombre} - ${estudiante.email} [${estudiante.idCarrera} ID Carrera] <button class="btn-delete" data-id="${estudiante.idEstudiante}">Eliminar</button>`;
-    listaCursos.appendChild(li);
+    li.innerHTML = `${profesor.codigo} - ${profesor.nombre} [${profesor.correo} Creditos] <button class="btn-delete" data-id="${curso.idCurso}">Eliminar</button>`;
+    listaProfesores.appendChild(li);
   });
 }
-async function crearProfesor(codigo,nombre, correo, celular) {
-  const profesor = {codigo, nombre, correo, celular };
+
+async function crearProfesor(codigo, nombre, correo, celular) {
+  const profesor = { codigo, nombre, correo, celular };
   let { error } = await supabase.from("Profesores").insert([profesor]);
   if (error) {
     console.error(error);
@@ -67,7 +57,7 @@ async function crearProfesor(codigo,nombre, correo, celular) {
   cargarProfesores();
 }
 
-async function eliminarProfesores(idProfesor) {
+async function eliminarProfesor(idProfesor) {
   let { error } = await supabase.from("Profesores").delete().eq("idProfesor", idProfesor);
   if (error) {
     console.error(error);
