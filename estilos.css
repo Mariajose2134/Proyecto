@@ -122,28 +122,7 @@ body {
   color: var(--brand)
 }
 
-.btn {
-  width: 100%;
-  border: 0;
-  cursor: pointer;
-  border-radius: 14px;
-  background: var(--brand);
-  color: royalblue;
-  font-weight: 800;
-  letter-spacing: .3px;
-  padding: 14px 18px;
-  margin: 18px 0 10px;
-  font-size: 1rem;
-  transition: .2s background, .2s transform;
-}
 
-.btn:hover {
-  background: var(--brand-600)
-}
-
-.btn:active {
-  transform: translateY(1px)
-}
 
 .social {
   display: flex;
