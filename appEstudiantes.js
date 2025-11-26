@@ -5,8 +5,8 @@ import { supabase } from "./supebaseClient.js";
 //========================
 const form = document.getElementById("estudiante-form");
 const inputId = document.getElementById("idEstudiante");
-const inputCodigo = document.getElementById("email");
-const inputNombre = document.getElementById("nombre");
+const inputCodigo = document.getElementById("nombre");
+const inputNombre = document.getElementById("email");
 const inputCreditos = document.getElementById("idCarrera");
 const btnSave = document.getElementById("btn-save");
 const btnCancel = document.getElementById("btn-cancel");
@@ -18,57 +18,57 @@ let listaCursos = document.getElementById("lista");
 //========================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const email = inputCodigo.value.trim();
-  const nombre = inputNombre.value.trim();
-  const idCarrera = parseInt(inputCreditos.value.trim());
+  const nombre = inputnombre.value.trim();
+  const email = inputemail.value.trim();   
+  const idCarrera = parseInt(inputidcarrera.value.trim());
   if (editando) {
   } else {
-    await crearCurso(email, nombre, idCarrera);
+    await crearEstudiante(nombre, email, idCarrera);
   }
 
   form.reset();
 });
 
-listaCursos.addEventListener("click", async (e) => {
+listaEstudiantes.addEventListener("click", async (e) => {
   if (e.target.classList.contains("btn-delete")) {
     const id = e.target.getAttribute("data-id");
-    await eliminarCursos(id);
-    cargarCursos();
+    await eliminarEstudiante(id);
+    cargarEstudiantes();
   }
 });
 
 //===================================
 //CRUD (CREATE-READ-UPDATE-DELETE)
 //===================================
-async function cargarCursos() {
-  let { data: cursos, error } = await supabase.from("Cursos").select("*");
+async function cargarEstudiantes() {
+  let { data: estudiantes, error } = await supabase.from("Estudiantes").select("*");
 
   if (error) {
-    console.error("Error al cargar cursos:", error);
+    console.error("Error al cargar estudiantes:", error);
     return;
   }
   listaCursos.innerHTML = "";
-  cursos.forEach((curso) => {
+  estudiantes.forEach((estudiante) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${curso.codigo} - ${curso.nombre} [${curso.creditos} Creditos] <button class="btn-delete" data-id="${curso.idCurso}">Eliminar</button>`;
+    li.innerHTML = `${estudiante.nombre} - ${estudiante.email} [${estudiante.idCarrera} ID Carrera] <button class="btn-delete" data-id="${estudiante.idEstudiante}">Eliminar</button>`;
     listaCursos.appendChild(li);
   });
 }
-async function crearCurso(codigo, nombre, creditos) {
-  const curso = { codigo, nombre, creditos };
-  let { error } = await supabase.from("Cursos").insert([curso]);
+async function crearEstudiante(nombre, email, idCarrera) {
+  const estudiante = { nombre, email, idCarrera };
+  let { error } = await supabase.from("Estudiantes").insert([estudiante]);
   if (error) {
     console.error(error);
   }
-  cargarCursos();
+  cargarEstudiantes();
 }
 
-async function eliminarCursos(idCurso) {
-  let { error } = await supabase.from("Cursos").delete().eq("idCurso", idCurso);
+async function eliminarCursos(idEstudiante) {
+  let { error } = await supabase.from("Estudiantes").delete().eq("idEstudiante", idEstudiante);
   if (error) {
     console.error(error);
   }
 }
 
-cargarCursos();
+cargarEstudiantes();
