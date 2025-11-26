@@ -4,7 +4,7 @@ import { supabase } from "./supebaseClient.js";
 // DOM
 //========================
 const form = document.getElementById("curso-form");
-const inputId = document.getElementById("id");
+const inputId = document.getElementById("idCurso");
 const inputCodigo = document.getElementById("codigo");
 const inputNombre = document.getElementById("nombre");
 const inputCreditos = document.getElementById("creditos");
@@ -51,7 +51,7 @@ async function cargarCursos() {
   cursos.forEach((curso) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${curso.codigo} - ${curso.nombre} [${curso.creditos} Creditos] <button class="btn-delete" data-id="${curso.id}">Eliminar</button>`;
+    li.innerHTML = `${curso.codigo} - ${curso.nombre} [${curso.creditos} Creditos] <button class="btn-delete" data-id="${curso.idCurso}">Eliminar</button>`;
     listaCursos.appendChild(li);
   });
 }
@@ -64,8 +64,8 @@ async function crearCurso(codigo, nombre, creditos) {
   cargarCursos();
 }
 
-async function eliminarCursos(id) {
-  let { error } = await supabase.from("Cursos").delete().eq("id", id);
+async function eliminarCursos(idCurso) {
+  let { error } = await supabase.from("Cursos").delete().eq("idCurso", idCurso);
   if (error) {
     console.error(error);
   }
