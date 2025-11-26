@@ -123,3 +123,51 @@ body{
     tr:last-child td {
       border-bottom: none;
 }
+
+
+
+.lista-generica {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 70%;               /* Centrado y ancho controlado */
+}
+
+.lista-generica li {
+  background-color: #d9e9f2;
+  margin: 10px auto;
+  padding: 12px 20px;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 18px;
+
+  transition: 0.25s ease;  /* Suavidad para el resalte */
+}
+
+/* ⭐ RESALTE AL PASAR EL MOUSE */
+.lista-generica li:hover {
+  background-color: #5aadce;       /* Color más intenso */
+  transform: scale(1.02);          /* Se agranda un poquito */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+/* Botón de eliminar */
+.btn-eliminar {
+  padding: 6px 12px;
+  background: #f2eaea;
+  border: 1px solid rgb(213, 35, 35);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.25s;
+}
+
+.btn-eliminar:hover {
+  background: #ffbbbb;
+}

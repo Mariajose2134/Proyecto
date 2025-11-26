@@ -32,6 +32,15 @@ form.addEventListener("submit", async (e) => {
   form.reset();
 });
 
+listaProfesores.addEventListener("click", async (e) => {
+  if (e.target.classList.contains("btn-delete")) {
+    const id = e.target.getAttribute("data-id");
+    await eliminarProfesor(id);
+    cargarProfesores();
+  }
+});
+
+
 async function cargarProfesores() {
   let { data: profesores, error } = await supabase.from("Profesores").select("*");
 
@@ -40,10 +49,10 @@ async function cargarProfesores() {
     return;
   }
   listaProfesores.innerHTML = "";
-  profesores.forEach((profesores) => {
+  profesores.forEach((profesor) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${profesor.codigo} - ${profesor.nombre} [${profesor.correo} Creditos] <button class="btn-delete" data-id="${curso.idCurso}">Eliminar</button>`;
+    li.innerHTML = `${profesor.codigo} - ${profesor.nombre} ${profesor.correo} ${profesor.celular}  <button class="btn-eliminar" data-id="${profesor.codigo}">Eliminar</button>`;
     listaProfesores.appendChild(li);
   });
 }
@@ -57,8 +66,8 @@ async function crearProfesor(codigo, nombre, correo, celular) {
   cargarProfesores();
 }
 
-async function eliminarProfesor(idProfesor) {
-  let { error } = await supabase.from("Profesores").delete().eq("idProfesor", idProfesor);
+async function eliminarProfesor(codigo) {
+  let { error } = await supabase.from("Profesores").delete().eq("codigo", codigo);
   if (error) {
     console.error(error);
   }
