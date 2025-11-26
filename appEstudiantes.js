@@ -18,9 +18,9 @@ let listaEstudiantes = document.getElementById("lista");
 //========================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const nombre = inputnombre.value.trim();
-  const email = inputemail.value.trim();   
-  const idCarrera = parseInt(inputidcarrera.value.trim());
+  const nombre = inputNombre.value.trim();
+  const email = inputEmail.value.trim();
+  const idCarrera = parseInt(inputIdCarrera.value.trim());
   if (editando) {
   } else {
     await crearEstudiante(nombre, email, idCarrera);
@@ -41,18 +41,20 @@ listaEstudiantes.addEventListener("click", async (e) => {
 //CRUD (CREATE-READ-UPDATE-DELETE)
 //===================================
 async function cargarEstudiantes() {
-  let { data: estudiantes, error } = await supabase.from("Estudiante").select("*");
+  let { data: estudiantes, error } = await supabase
+    .from("Estudiante")
+    .select("*");
 
   if (error) {
     console.error("Error al cargar estudiante:", error);
     return;
   }
-  listaCursos.innerHTML = "";
+  listaEstudiantes.innerHTML = "";
   estudiantes.forEach((estudiante) => {
     let li = document.createElement("li");
     //li.textContent = curso.codigo + " - " + curso.nombre;
     li.innerHTML = `${estudiante.nombre} - ${estudiante.email} [${estudiante.idCarrera} ID Carrera] <button class="btn-delete" data-id="${estudiante.idEstudiante}">Eliminar</button>`;
-    listaCursos.appendChild(li);
+    listaEstudiantes.appendChild(li);
   });
 }
 async function crearEstudiante(nombre, email, idCarrera) {
@@ -65,7 +67,10 @@ async function crearEstudiante(nombre, email, idCarrera) {
 }
 
 async function eliminarEstudiante(idEstudiante) {
-  let { error } = await supabase.from("Estudiantes").delete().eq("idEstudiante", idEstudiante);
+  let { error } = await supabase
+    .from("Estudiantes")
+    .delete()
+    .eq("idEstudiante", idEstudiante);
   if (error) {
     console.error(error);
   }
