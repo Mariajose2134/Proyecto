@@ -30,7 +30,7 @@
                 </div>
                 <div class="welcome">¡Bienvenido!</div>
 
-                <form action="#" method="post" autocomplete="on">
+                <form id="formLogin" action="#" method="post" autocomplete="off">
                     <div class="field">
                         <label class="label" for="email">Usuario o Correo
                             electrónico</label>
@@ -50,7 +50,7 @@
 
                     </div>
 
-                    <button type="submit" onclick="window.location.href='../Área_Principal.html'" class=" btn btn-primary">Ingresar</button>
+                    <button type="submit" class=" btn btn-primary">Ingresar</button>
 
                     <div class="fineprint">
                         Derechos Reservados 2025 · <a href="#">Términos y
@@ -68,6 +68,24 @@
                     <img src="../Imagenes/R.jpg" alt="Curso de Programación" width="656" height="299" class="imagen-centrada">
                 </section>
 </section>
+
+<script>
+    document.getElementById("formLogin").addEventListener("submit", function (event) {
+
+        // Si el formulario NO es válido
+        if (!this.checkValidity()) {
+            event.preventDefault(); // evita el submit
+            event.stopPropagation();
+        } else {
+            // Formulario válido → redirigir
+            event.preventDefault(); 
+            window.location.href = "../Área_Principal.html";
+        }
+
+        // Activa los estilos de error de Bootstrap
+        this.classList.add("was-validated");
+    });
+</script>
      
         </main>
     </body>
