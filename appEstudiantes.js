@@ -12,7 +12,7 @@ const btnSave = document.getElementById("btn-save");
 const btnCancel = document.getElementById("btn-cancel");
 const statusDiv = document.getElementById("status");
 let editando = false;
-let listaCursos = document.getElementById("lista");
+let listaEstudiantes = document.getElementById("lista");
 //========================
 //Eventos
 //========================
@@ -41,10 +41,10 @@ listaEstudiantes.addEventListener("click", async (e) => {
 //CRUD (CREATE-READ-UPDATE-DELETE)
 //===================================
 async function cargarEstudiantes() {
-  let { data: estudiantes, error } = await supabase.from("Estudiantes").select("*");
+  let { data: estudiantes, error } = await supabase.from("Estudiante").select("*");
 
   if (error) {
-    console.error("Error al cargar estudiantes:", error);
+    console.error("Error al cargar estudiante:", error);
     return;
   }
   listaCursos.innerHTML = "";
@@ -57,15 +57,15 @@ async function cargarEstudiantes() {
 }
 async function crearEstudiante(nombre, email, idCarrera) {
   const estudiante = { nombre, email, idCarrera };
-  let { error } = await supabase.from("Estudiantes").insert([estudiante]);
+  let { error } = await supabase.from("Estudiante").insert([estudiante]);
   if (error) {
     console.error(error);
   }
   cargarEstudiantes();
 }
 
-async function eliminarCursos(idEstudiante) {
-  let { error } = await supabase.from("Estudiantes").delete().eq("idEstudiante", idEstudiante);
+async function eliminarEstudiante(idEstudiante) {
+  let { error } = await supabase.from("Estudiante").delete().eq("idEstudiante", idEstudiante);
   if (error) {
     console.error(error);
   }
