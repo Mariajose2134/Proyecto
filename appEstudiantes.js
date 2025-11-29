@@ -5,35 +5,35 @@ import { supabase } from "./supebaseClient.js";
 //========================
 const form = document.getElementById("estudiante-form");
 const inputId = document.getElementById("idEstudiante");
-const inputNombre= document.getElementById("nombre");
-const inputEmail = document.getElementById("email");
+const inputNombre = document.getElementById("nombre");
+const inputCorreo = document.getElementById("correo");
 const inputIdCarrera = document.getElementById("idCarrera");
 const btnSave = document.getElementById("btn-save");
 const btnCancel = document.getElementById("btn-cancel");
 const statusDiv = document.getElementById("status");
 let editando = false;
-let listaEstudiantes = document.getElementById("lista");
+let listaEstudiante = document.getElementById("lista");
 //========================
 //Eventos
 //========================
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const nombre = inputNombre.value.trim();
-  const email = inputEmail.value.trim();
+  const correo = inputCorreo.value.trim();
   const idCarrera = parseInt(inputIdCarrera.value.trim());
   if (editando) {
   } else {
-    await crearEstudiante(nombre, email, idCarrera);
+    await crearEstudiante(nombre, correo, idCarrera);
   }
 
   form.reset();
 });
 
-listaEstudiantes.addEventListener("click", async (e) => {
+listaEstudiante.addEventListener("click", async (e) => {
   if (e.target.classList.contains("btn-delete")) {
     const id = e.target.getAttribute("data-id");
     await eliminarEstudiante(id);
-    cargarEstudiantes();
+    cargarEstudiante();
   }
 });
 
@@ -49,31 +49,30 @@ async function cargarEstudiantes() {
     console.error("Error al cargar estudiante:", error);
     return;
   }
-  listaEstudiantes.innerHTML = "";
-  estudiantes.forEach((estudiante) => {
+  listaEstudiante.innerHTML = "";
+  estudiante.forEach((estudiante) => {
     let li = document.createElement("li");
-    //li.textContent = curso.codigo + " - " + curso.nombre;
-    li.innerHTML = `${estudiante.nombre} - ${estudiante.email} [${estudiante.idCarrera} ID Carrera] <button class="btn-delete" data-id="${estudiante.idEstudiante}">Eliminar</button>`;
-    listaEstudiantes.appendChild(li);
+    li.innerHTML = `${estudiante.nombre} - ${estudiante.correo} [${estudiante.idCarrera} ID Carrera] <button class="btn-delete" data-id="${estudiante.idEstudiante}">Eliminar</button>`;
+    listaEstudiante.appendChild(li);
   });
 }
-async function crearEstudiante(nombre, email, idCarrera) {
-  const estudiante = { nombre, email, idCarrera };
-  let { error } = await supabase.from("Estudiantes").insert([estudiante]);
+async function crearEstudiante(nombre, correo, idCarrera) {
+  const estudiante = { nombre, correo, idCarrera };
+  let { error } = await supabase.from("Estudiante").insert([estudiante]);
   if (error) {
-    console.error(error);
+    console.error("Error al crear estudiante:", error);
   }
-  cargarEstudiantes();
+  cargarEstudiante();
 }
 
 async function eliminarEstudiante(idEstudiante) {
   let { error } = await supabase
-    .from("Estudiantes")
+    .from("Estudiante")
     .delete()
     .eq("idEstudiante", idEstudiante);
   if (error) {
-    console.error(error);
+    console.error("Error al eliminar estudiante:", error);
   }
 }
 
-cargarEstudiantes();
+cargarEstudiante();
