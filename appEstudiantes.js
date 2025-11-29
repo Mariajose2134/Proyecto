@@ -40,9 +40,9 @@ listaEstudiante.addEventListener("click", async (e) => {
 //===================================
 //CRUD (CREATE-READ-UPDATE-DELETE)
 //===================================
-async function cargarEstudiante() {
-  let { data: estudiante, error } = await supabase
-    .from("Estudiante")
+async function cargarEstudiantes() {
+  let { data: estudiantes, error } = await supabase
+    .from("Estudiantes")
     .select("*");
 
   if (error) {
